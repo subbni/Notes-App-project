@@ -18,8 +18,8 @@ function setNotes(notes) {
   });
 }
 
-export function getNotesByCategory(category) {
-  const filteredNotes = getNotes(category);
+export function getNotesByDirectory(directory) {
+  const filteredNotes = getNotes(directory);
   setNotes(filteredNotes);
 }
 
@@ -33,7 +33,7 @@ function createNoteItemElement(note) {
   return `
     <div class="notes-item" data-id=${note.id}>
       <h2 class="notes-item__title">${note.title}</h2>
-      <p class="notes-item__directory">@${note.directory}</p>
+      <p class="notes-item__directory">/${note.directory}</p>
     </div>
   `;
 }

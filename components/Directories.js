@@ -1,5 +1,5 @@
 import { getDirectories } from '../services/dataService.js';
-import { getNotesByCategory } from './Notes.js';
+import { getNotesByDirectory } from './Notes.js';
 
 export function initializeDirectories() {
   const directoriesElement = document.querySelector('.directories');
@@ -18,8 +18,7 @@ export function initializeDirectories() {
 }
 
 export function handleDirectoryClick(e) {
-  console.log(e.target.textContent);
-  getNotesByCategory(e.target.textContent);
+  getNotesByDirectory(e.target.dataset.name);
 }
 
 function createDirectoryItem(directory) {
