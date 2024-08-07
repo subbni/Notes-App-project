@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid var(--color-border);
+  width: 350px;
+}
+
+.container:nth-child(3) {
+  flex-grow: 1;
+}
+
+.header {
+  border-bottom: 1px solid var(--color-border);
+  height: 50px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    background-color: gainsboro;
+  }
+  /* directories-container 없애기 */
+}
+
+/* pc 화면 */
+@media (min-width: 769px) {
+}

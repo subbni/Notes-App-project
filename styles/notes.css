@@ -1,0 +1,13 @@
+.notes-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.notes-item__title {
+  font-weight: 500;
+}
+
+.notes-item__directory {
+  font-weight: 300;
+  font-size: small;
+}

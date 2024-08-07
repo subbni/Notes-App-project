@@ -1,0 +1,50 @@
+@import url(./layout.css);
+@import url(./directories.css);
+@import url(./notes.css);
+
+/* ===== 변수 설정 ===== */
+:root {
+  --color-background: #f9f9f9;
+  --color-point: #e5ddc5;
+  --color-border: #d1d1d1;
+}
+
+/* ===== 리셋 ===== */
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: normal;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+em {
+  font-weight: inherit;
+  font-style: normal;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+img {
+  width: 25px;
+  height: 25px;
+}

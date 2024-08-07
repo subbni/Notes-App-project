@@ -1,0 +1,19 @@
+.directories-container {
+  background-color: var(--color-background);
+}
+
+.directories {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.directory-item {
+  height: 30px;
+  padding: 0 10px 0 10px;
+  cursor: pointer;
+}
+
+.directories-header {
+  border: none;
+}
