@@ -1,15 +1,17 @@
 @import url(./layout.css);
-@import url(./directories.css);
+@import url(./folders.css);
 @import url(./notes.css);
 @import url(./note.css);
+@import url(./modals.css);
 
 /* ===== 변수 설정 ===== */
 :root {
   --color-background: #f9f9f9;
+  --color-base: #ffc94a;
   --color-point: #ffe187;
-  --color-border: #d1d1d1;
+  --color-border: #d1d1d1a4;
   --font-size-title: 19px;
-  --font-size-text: 16px;
+  --font-size-text: 15px;
 }
 
 /* ===== 리셋 ===== */

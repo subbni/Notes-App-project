@@ -1,12 +1,12 @@
 import { getNoteById, createNewNote } from '../services/dataService.js';
-import { getCurrentDirectory } from './Directories.js';
+import { getCurrentfolder } from './Folders.js';
 import { removeClicked } from './Notes.js';
 
 export function initializeNote() {
   const noteHeaderElement = document.querySelector('.note-header');
-  noteHeaderElement.innerHTML = `<img id="note-create-icon" src="./images/note-edit.svg" alt="노트 생성 아이콘" />`;
+  noteHeaderElement.innerHTML = `<img id="add-note-icon" src="./images/add-square.svg" alt="노트 생성 아이콘" />`;
   document
-    .querySelector('#note-create-icon')
+    .querySelector('#add-note-icon')
     .addEventListener('click', handleNoteCreate);
 
   const noteElement = document.querySelector('.note');
@@ -20,6 +20,7 @@ export function showNoteById(id) {
   noteElement.innerHTML = createNoteElement(note);
 }
 
+// ===== event listener =====
 function handleNoteCreate() {
   removeClicked();
   // Note Element를 비우고, 노트를 작성할 수 있도록 바꾼다.
@@ -38,18 +39,19 @@ function handleNoteSubmit() {
   const noteTitle = document.querySelector('.note-title').value;
   const noteContent = document.querySelector('.note-content').value;
   const newNote = {
-    directory: getCurrentDirectory(),
+    folder: getCurrentfolder(),
     title: noteTitle,
     content: noteContent,
   };
   // 'All'인 상태면 생성 시엔 'Notes'로 바꿔주기
-  if (newNote.directory === 'All') {
-    newNote.directory = 'Notes';
+  if (newNote.folder === 'All') {
+    newNote.folder = 'Notes';
   }
   createNewNote(newNote);
   // 화면창 초기화
 }
 
+// ===== html element 생성 =====
 function createNoteElement(note) {
   return `
   <div class="note__title">

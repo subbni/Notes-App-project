@@ -8,7 +8,7 @@
   font-weight: 500;
 }
 
-.notes-item__directory {
+.notes-item__folder {
   font-weight: 300;
 }
 
@@ -18,4 +18,11 @@
 
 .notes {
   padding: 10px;
+}
+
+.new-folder-btn {
+  all: unset;
+  cursor: pointer;
+  padding: 5px;
+  color: rgb(109, 109, 109);
 }

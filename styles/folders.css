@@ -1,0 +1,35 @@
+.folders-container {
+  position: relative;
+  background-color: var(--color-background);
+}
+
+.folders {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.folder-item {
+  height: 30px;
+  padding: 0 10px 0 10px;
+  cursor: pointer;
+}
+
+.folders-header {
+  border: none;
+}
+
+.folders-footer {
+  width: 100%;
+  height: 30px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  padding: 0 10px 0 10px;
+}

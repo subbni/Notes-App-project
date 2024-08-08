@@ -1,5 +1,5 @@
 import { getNotes } from '../services/dataService.js';
-import { getCurrentDirectory } from './Directories.js';
+import { getCurrentfolder } from './Folders.js';
 import { showNoteById } from './Note.js';
 
 let previousClickedElement = null;
@@ -11,7 +11,7 @@ export function initializeNotes() {
 }
 
 export function updateNotes() {
-  const notes = getNotes(getCurrentDirectory());
+  const notes = getNotes(getCurrentfolder());
   setNotes(notes);
 }
 
@@ -26,8 +26,8 @@ function setNotes(notes) {
   });
 }
 
-export function getNotesByDirectory(directory) {
-  const filteredNotes = getNotes(directory);
+export function getNotesByfolder(folder) {
+  const filteredNotes = getNotes(folder);
   setNotes(filteredNotes);
 }
 
@@ -54,7 +54,7 @@ function createNoteItemElement(note) {
     <div class="notes-item" data-id=${note.id}>
       <h2 class="notes-item__title">${note.title}</h2>
       <img src="./images/folder.svg" alt="folder icon">
-      <span class="notes-item__directory">/${note.directory}</span>
+      <span class="notes-item__folder">/${note.folder}</span>
     </div>
   `;
 }
