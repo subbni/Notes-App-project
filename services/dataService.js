@@ -71,6 +71,7 @@ export const createNewNote = (newNote) => {
   all.numberOfNotes += 1;
   folder.numberOfNotes += 1;
   updateNotesToLocalStorage();
+  updateFoldersToLocalStorage();
   updateComponents();
 };
 
