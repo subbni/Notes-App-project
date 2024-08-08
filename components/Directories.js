@@ -1,6 +1,10 @@
 import { getDirectories } from '../services/dataService.js';
 import { getNotesByDirectory } from './Notes.js';
 
+let currentDirectory = 'All';
+
+export const getCurrentDirectory = () => currentDirectory;
+
 export function initializeDirectories() {
   const directoriesElement = document.querySelector('.directories');
   const directories = getDirectories();
@@ -18,11 +22,15 @@ export function initializeDirectories() {
 }
 
 export function handleDirectoryClick(e) {
-  getNotesByDirectory(e.target.dataset.name);
+  currentDirectory = e.target.closest('.directory-item').dataset.name;
+  getNotesByDirectory(currentDirectory);
 }
 
 function createDirectoryItem(directory) {
   return `
-    <div class="directory-item" data-name="${directory.name}">${directory.name}</div>
+    <div class="directory-item" data-name="${directory.name}">
+    <img src="./images/folder-yellow.svg" alt="folder icon">
+    <span>${directory.name}<span>
+    </div>
   `;
 }
