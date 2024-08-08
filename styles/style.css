@@ -1,16 +1,22 @@
 @import url(./layout.css);
 @import url(./directories.css);
 @import url(./notes.css);
+@import url(./note.css);
 
 /* ===== 변수 설정 ===== */
 :root {
   --color-background: #f9f9f9;
-  --color-point: #e5ddc5;
+  --color-point: #ffe187;
   --color-border: #d1d1d1;
+  --font-size-title: 19px;
+  --font-size-text: 16px;
 }
 
 /* ===== 리셋 ===== */
 
+* {
+  font-size: var(--font-size-text);
+}
 body {
   margin: 0;
   box-sizing: border-box;
@@ -45,6 +51,6 @@ ol {
 }
 
 img {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
