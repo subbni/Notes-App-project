@@ -53,6 +53,8 @@ function handleAddFolderBtnClick(e) {
   const folderModal = document.querySelector('.folder-modal');
   console.log(folderModal);
   folderModal.classList.add('on');
+  const backdrop = document.querySelector('.backdrop');
+  backdrop.classList.add('on');
 }
 
 //  ===== html element 생성 =====

@@ -14,6 +14,8 @@ export function initializeModals() {
 const handleCancelBtnClick = () => {
   const folderModal = document.querySelector('.folder-modal');
   folderModal.classList.remove('on');
+  const backdrop = document.querySelector('.backdrop');
+  backdrop.classList.remove('on');
 };
 
 const handleConfirmBtnClick = (e) => {
@@ -24,6 +26,8 @@ const handleConfirmBtnClick = (e) => {
   createNewFolder(nameText);
   const folderModal = document.querySelector('.folder-modal');
   folderModal.classList.remove('on');
+  const backdrop = document.querySelector('.backdrop');
+  backdrop.classList.remove('on');
 };
 
 // ===== html 요소 생성 =====
@@ -33,9 +37,9 @@ function createAddFolderModal() {
     <h2 class="folder-modal__title">New Folder</h2>
     <form class="folder-modal__form">
       <span>Name:</span>
-      <input name="name" type="text" value="New Folder">
+      <input name="name" type="text" value="New Folder" autofocus="autofocus">
     </form>
-    <div>
+    <div class="folder-modal__footer">
       <button class="folder-cancel-btn">Cancel</button>
       <button class="folder-confirm-btn">Ok</button>
     </div>

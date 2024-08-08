@@ -12,6 +12,7 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   padding: 30px;
+  z-index: 1000; /* 가장 앞에 위치하도록  */
 }
 
 .folder-modal.on {
@@ -27,12 +28,14 @@
   width: 100%;
   height: 30px;
   line-height: 30px;
+  padding-bottom: 10px;
 }
 
 .folder-modal__form input[type='text'] {
   width: 70%;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border-radius: 6px;
   margin-left: 15px;
 }
@@ -41,4 +44,45 @@
   outline: none;
   border: 3px solid var(--color-base);
   box-shadow: none;
+}
+
+.folder-modal__footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.folder-modal__footer button {
+  display: block;
+  width: 90px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.folder-cancel-btn {
+  background-color: white;
+  margin-right: 15px;
+}
+
+.folder-confirm-btn {
+  background-color: var(--color-base);
+}
+/* Backdrop */
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(116, 116, 116, 0.207);
+  z-index: 500; /* 다른 요소들보다는 앞에, 모달창 보다는 뒤에 위치하도록 */
+}
+
+.backdrop.on {
+  display: block;
 }
