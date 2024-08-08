@@ -10,8 +10,10 @@
   --color-base: #ffc94a;
   --color-point: #ffe187;
   --color-border: #d1d1d1a4;
+  --color-gray: #868686;
   --font-size-title: 19px;
-  --font-size-text: 15px;
+  --font-size-text: 16px;
+  --font-size-small: 12px;
 }
 
 /* ===== 리셋 ===== */

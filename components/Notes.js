@@ -53,8 +53,10 @@ function createNoteItemElement(note) {
   return `
     <div class="notes-item" data-id=${note.id}>
       <h2 class="notes-item__title">${note.title}</h2>
-      <img src="./images/folder.svg" alt="folder icon">
-      <span class="notes-item__folder">/${note.folder}</span>
+      <div class="notes-item__folder">
+        <img src="./images/folder.svg" alt="folder icon">
+        <span class="notes-item__folder-title">${note.folder}</span>
+      </div>
     </div>
   `;
 }

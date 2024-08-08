@@ -8,8 +8,9 @@
   font-weight: 500;
 }
 
-.notes-item__folder {
-  font-weight: 300;
+.notes-item__folder-title {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
 }
 
 .notes-item.clicked {
@@ -20,9 +21,12 @@
   padding: 10px;
 }
 
-.new-folder-btn {
-  all: unset;
-  cursor: pointer;
-  padding: 5px;
-  color: rgb(109, 109, 109);
+.notes-item__folder {
+  display: flex;
+}
+
+.notes-item__folder img {
+  width: 16px;
+  height: 16px;
+  padding-right: 5px;
 }
