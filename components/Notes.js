@@ -1,4 +1,5 @@
 import { getNotes } from '../services/dataService.js';
+import { getCurrentDirectory } from './Directories.js';
 import { showNoteById } from './Note.js';
 
 let previousClickedElement = null;
@@ -6,6 +7,11 @@ let previousClickedElement = null;
 export function initializeNotes() {
   // 첫 로드시 모든 노트를 보여줌
   const notes = getNotes('All');
+  setNotes(notes);
+}
+
+export function updateNotes() {
+  const notes = getNotes(getCurrentDirectory());
   setNotes(notes);
 }
 
@@ -28,15 +34,19 @@ export function getNotesByDirectory(directory) {
 function handleNotesClick(e) {
   const clickedElement = e.target.closest('.notes-item');
 
-  if (previousClickedElement) {
-    previousClickedElement.classList.remove('clicked');
-  }
+  removeClicked();
 
   clickedElement.classList.add('clicked');
   previousClickedElement = clickedElement;
 
   const noteId = clickedElement.dataset.id;
   showNoteById(noteId);
+}
+
+export function removeClicked() {
+  if (previousClickedElement) {
+    previousClickedElement.classList.remove('clicked');
+  }
 }
 
 function createNoteItemElement(note) {

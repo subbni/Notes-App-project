@@ -1,3 +1,7 @@
+import { initializeDirectories } from '../components/Directories.js';
+import { initializeNotes } from '../components/Notes.js';
+import { updateComponents } from '../index.js';
+
 const directories = [
   {
     id: 1,
@@ -51,4 +55,14 @@ export const getNotes = (directory) => {
 export const getNoteById = (id) => {
   // id는 string으로 들어옴
   return notes.find((note) => note.id === Number(id));
+};
+
+export const createNewNote = (newNote) => {
+  newNote = {
+    ...newNote,
+    id: currentNoteId,
+  };
+  currentNoteId += 1;
+  notes.push(newNote);
+  updateComponents();
 };
