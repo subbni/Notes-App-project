@@ -1,54 +1,56 @@
-import { initializeDirectories } from '../components/Directories.js';
+import { initializeFolders } from '../components/Folders.js';
 import { initializeNotes } from '../components/Notes.js';
 import { updateComponents } from '../index.js';
 
-const directories = [
+const STORAGE_KEYS = {
+  FOLDERS: 'folders',
+  NOTES: 'notes',
+  CURRENT_NOTE_ID: 'currentNoteId',
+  CURRENT_FOLD_ID: 'currentFolderId',
+};
+
+const defaultFolders = [
   {
     id: 1,
     name: 'All',
-    numberOfNotes: 2,
+    numberOfNotes: 1,
   },
   {
     id: 2,
     name: 'Notes',
-    numberOfNotes: 2,
-  },
-  {
-    id: 3,
-    name: 'Test',
     numberOfNotes: 1,
   },
 ];
 
-const notes = [
+const defaultNotes = [
   {
     id: 1,
-    title: 'First Test Note',
-    content: 'This is the first test note.',
-    directory: 'Notes',
-  },
-  {
-    id: 2,
-    title: 'Second Test Note',
-    content: 'This is the second test note.',
-    directory: 'Notes',
-  },
-  {
-    id: 3,
-    title: 'Third Test Note',
-    content: 'This is the third test note.',
-    directory: 'Test',
+    title: 'Be A Writer',
+    content: 'Write whatever you want, whenever you want.',
+    folder: 'Notes',
   },
 ];
 
-let currentNoteId = 4;
+const getFromLocalStorage = (key, defaultValue) => {
+  const storedData = localStorage.getItem(key);
+  return storedData ? JSON.parse(storedData) : defaultValue;
+};
 
-export const getDirectories = () => directories;
+const setToLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
 
-export const getNotes = (directory) => {
-  if (directory === 'All') return notes;
+const folders = getFromLocalStorage(STORAGE_KEYS.FOLDERS, defaultFolders);
+const notes = getFromLocalStorage(STORAGE_KEYS.NOTES, defaultNotes);
+let currentFolderId = getFromLocalStorage(STORAGE_KEYS.CURRENT_FOLD_ID, 3);
+let currentNoteId = getFromLocalStorage(STORAGE_KEYS.CURRENT_NOTE_ID, 2);
+
+export const getFolders = () => folders;
+
+export const getNotes = (folder) => {
+  if (folder === 'All') return notes;
   else {
-    return notes.filter((note) => note.directory == directory);
+    return notes.filter((note) => note.folder == folder);
   }
 };
 
@@ -64,5 +66,32 @@ export const createNewNote = (newNote) => {
   };
   currentNoteId += 1;
   notes.push(newNote);
+  const folder = folders.find((folder) => folder.name === newNote.folder);
+  const all = folders.find((folder) => folder.name === 'All');
+  all.numberOfNotes += 1;
+  folder.numberOfNotes += 1;
+  updateNotesToLocalStorage();
   updateComponents();
+};
+
+export const createNewFolder = (folderName) => {
+  const newFolder = {
+    name: folderName,
+    id: currentFolderId,
+    numberOfNotes: 0,
+  };
+  currentFolderId += 1;
+  folders.push(newFolder);
+  updateFoldersToLocalStorage();
+  updateComponents();
+};
+
+const updateNotesToLocalStorage = () => {
+  setToLocalStorage(STORAGE_KEYS.NOTES, notes);
+  setToLocalStorage(STORAGE_KEYS.CURRENT_NOTE_ID, currentNoteId);
+};
+
+const updateFoldersToLocalStorage = () => {
+  setToLocalStorage(STORAGE_KEYS.FOLDERS, folders);
+  setToLocalStorage(STORAGE_KEYS.CURRENT_FOLD_ID, currentFolderId);
 };
