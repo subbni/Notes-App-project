@@ -1,5 +1,5 @@
 import { getNoteById, createNewNote } from '../services/dataService.js';
-import { getCurrentfolder } from './Folders.js';
+import { getCurrentFolder } from './Folders.js';
 import { removeClicked } from './Notes.js';
 
 export function initializeNote() {
@@ -39,7 +39,7 @@ function handleNoteSubmit() {
   const noteTitle = document.querySelector('.note-title').value;
   const noteContent = document.querySelector('.note-content').value;
   const newNote = {
-    folder: getCurrentfolder(),
+    folder: getCurrentFolder(),
     title: noteTitle,
     content: noteContent,
   };

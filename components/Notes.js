@@ -1,5 +1,5 @@
 import { getNotes } from '../services/dataService.js';
-import { getCurrentfolder } from './Folders.js';
+import { getCurrentFolder } from './Folders.js';
 import { showNoteById } from './Note.js';
 
 let previousClickedElement = null;
@@ -11,7 +11,7 @@ export function initializeNotes() {
 }
 
 export function updateNotes() {
-  const notes = getNotes(getCurrentfolder());
+  const notes = getNotes(getCurrentFolder());
   setNotes(notes);
 }
 
@@ -26,7 +26,7 @@ function setNotes(notes) {
   });
 }
 
-export function getNotesByfolder(folder) {
+export function getNotesByFolder(folder) {
   const filteredNotes = getNotes(folder);
   setNotes(filteredNotes);
 }
