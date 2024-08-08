@@ -1,6 +1,7 @@
 .notes-item {
   padding: 10px;
   cursor: pointer;
+  border-radius: 12px;
 }
 
 .notes-item__title {
@@ -9,5 +10,12 @@
 
 .notes-item__directory {
   font-weight: 300;
-  font-size: small;
+}
+
+.notes-item.clicked {
+  background-color: var(--color-point);
+}
+
+.notes {
+  padding: 10px;
 }
