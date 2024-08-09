@@ -22,7 +22,6 @@ const handleConfirmBtnClick = (e) => {
   const nameText = document.querySelector(
     '.folder-modal__form input[name="name"]'
   ).value;
-  console.log(nameText);
   createNewFolder(nameText);
   const folderModal = document.querySelector('.folder-modal');
   folderModal.classList.remove('on');

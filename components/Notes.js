@@ -35,9 +35,7 @@ function setNotes(notes) {
 }
 
 export function getNotesByFolder(folder) {
-  console.log(folder);
   const filteredNotes = getNotes(folder);
-  console.log(filteredNotes);
   setNotes(filteredNotes);
 }
 
