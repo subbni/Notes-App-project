@@ -4,7 +4,7 @@ import { removeClicked } from './Notes.js';
 
 export function initializeNote() {
   const noteHeaderElement = document.querySelector('.note-header');
-  noteHeaderElement.innerHTML = `<img id="add-note-icon" src="./images/add-square.svg" alt="노트 생성 아이콘" />`;
+  noteHeaderElement.innerHTML = `<img id="add-note-icon" src="./images/edit-icon.svg" alt="노트 생성 아이콘" />`;
   document
     .querySelector('#add-note-icon')
     .addEventListener('click', handleNoteCreate);
@@ -43,10 +43,7 @@ function handleNoteSubmit() {
     title: noteTitle,
     content: noteContent,
   };
-  // 'All'인 상태면 생성 시엔 'Notes'로 바꿔주기
-  if (newNote.folder === 'All') {
-    newNote.folder = 'Notes';
-  }
+
   createNewNote(newNote);
   // 화면창 초기화
 }
