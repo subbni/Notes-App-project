@@ -1,11 +1,11 @@
 .note-header {
   display: flex;
   align-items: center;
+  padding: 0 15px 0 15px;
 }
 
 #add-note-icon {
   cursor: pointer;
-  padding: 10px;
 }
 
 .note {

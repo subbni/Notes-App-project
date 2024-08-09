@@ -1,3 +1,20 @@
+.notes-header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 15px 0 15px;
+}
+
+#note-delete-icon {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#note-delete-icon:hover {
+  background-color: rgba(233, 233, 233, 0.7);
+}
+
 .notes-item {
   padding: 10px;
   cursor: pointer;
