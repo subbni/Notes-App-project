@@ -109,10 +109,12 @@ export const deleteNoteById = (noteId) => {
 
 export const deleteFolderById = (folderId) => {
   // folder 삭제
-  const folderToDelete = folders.find((folder) => folder.id === folderId);
-  folders = folders.filter((folder) => folder.id !== folderId);
+  const folderToDelete = folders.find(
+    (folder) => folder.id === Number(folderId)
+  );
+  folders = folders.filter((folder) => folder.id !== Number(folderId));
   // note 삭제
-  notes = notes.filter((note) => note.folder.id !== folderId);
+  notes = notes.filter((note) => note.folder.id !== Number(folderId));
 
   // 'All' 디렉토리의 numberOfNotes 업데이트
   updateNumberOfNotes(1, -folderToDelete.numberOfNotes);
