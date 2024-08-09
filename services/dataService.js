@@ -6,7 +6,7 @@ const STORAGE_KEYS = {
   FOLDERS: 'folders',
   NOTES: 'notes',
   CURRENT_NOTE_ID: 'currentNoteId',
-  CURRENT_FOLD_ID: 'currentFolderId',
+  CURRENT_FOLDER_ID: 'currentFolderId',
 };
 
 const defaultFolders = [
@@ -27,7 +27,7 @@ const defaultNotes = [
     id: 1,
     title: 'Be A Writer',
     content: 'Write whatever you want, whenever you want.',
-    folder: 'Notes',
+    folder: { name: 'Notes', id: 2 },
   },
 ];
 
@@ -40,17 +40,17 @@ const setToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-const folders = getFromLocalStorage(STORAGE_KEYS.FOLDERS, defaultFolders);
-const notes = getFromLocalStorage(STORAGE_KEYS.NOTES, defaultNotes);
-let currentFolderId = getFromLocalStorage(STORAGE_KEYS.CURRENT_FOLD_ID, 3);
+let folders = getFromLocalStorage(STORAGE_KEYS.FOLDERS, defaultFolders);
+let notes = getFromLocalStorage(STORAGE_KEYS.NOTES, defaultNotes);
+let currentFolderId = getFromLocalStorage(STORAGE_KEYS.CURRENT_FOLDER_ID, 3);
 let currentNoteId = getFromLocalStorage(STORAGE_KEYS.CURRENT_NOTE_ID, 2);
 
 export const getFolders = () => folders;
 
 export const getNotes = (folder) => {
-  if (folder === 'All') return notes;
+  if (folder.name === 'All') return notes;
   else {
-    return notes.filter((note) => note.folder == folder);
+    return notes.filter((note) => note.folder.id === Number(folder.id));
   }
 };
 
@@ -59,17 +59,22 @@ export const getNoteById = (id) => {
   return notes.find((note) => note.id === Number(id));
 };
 
+// ===== CREATE PART ===== //
 export const createNewNote = (newNote) => {
+  // 'All'인 상태면 생성 시엔 'Notes'로 바꿔주기
+  if (newNote.folder.name === 'All') {
+    newNote.folder.name = 'Notes';
+    newNote.folder.id = 2;
+  }
+
   newNote = {
     ...newNote,
     id: currentNoteId,
   };
   currentNoteId += 1;
   notes.push(newNote);
-  const folder = folders.find((folder) => folder.name === newNote.folder);
-  const all = folders.find((folder) => folder.name === 'All');
-  all.numberOfNotes += 1;
-  folder.numberOfNotes += 1;
+
+  updateNumberOfNotes(newNote.folder.id, 1);
   updateNotesToLocalStorage();
   updateFoldersToLocalStorage();
   updateComponents();
@@ -77,16 +82,47 @@ export const createNewNote = (newNote) => {
 
 export const createNewFolder = (folderName) => {
   const newFolder = {
-    name: folderName,
     id: currentFolderId,
+    name: folderName,
     numberOfNotes: 0,
   };
   currentFolderId += 1;
   folders.push(newFolder);
+
   updateFoldersToLocalStorage();
   updateComponents();
 };
 
+// ===== DELETE PART ====== //
+export const deleteNoteById = (noteId) => {
+  // note 삭제
+  const noteToDelete = notes.find((note) => note.id === Number(noteId));
+  notes = notes.filter((note) => note.id !== Number(noteId));
+
+  updateNumberOfNotes(noteToDelete.folder.id, -1);
+
+  // localstorage에 반영
+  updateNotesToLocalStorage();
+  updateFoldersToLocalStorage();
+  updateComponents();
+};
+
+export const deleteFolderById = (folderId) => {
+  // folder 삭제
+  const folderToDelete = folders.find((folder) => folder.id === folderId);
+  folders = folders.filter((folder) => folder.id !== folderId);
+  // note 삭제
+  notes = notes.filter((note) => note.folder.id !== folderId);
+
+  // 'All' 디렉토리의 numberOfNotes 업데이트
+  updateNumberOfNotes(1, -folderToDelete.numberOfNotes);
+  // localstorage에 반영
+  updateNotesToLocalStorage();
+  updateFoldersToLocalStorage();
+  updateComponents();
+};
+
+// ===== UPDATE PART ====== //
 const updateNotesToLocalStorage = () => {
   setToLocalStorage(STORAGE_KEYS.NOTES, notes);
   setToLocalStorage(STORAGE_KEYS.CURRENT_NOTE_ID, currentNoteId);
@@ -94,5 +130,17 @@ const updateNotesToLocalStorage = () => {
 
 const updateFoldersToLocalStorage = () => {
   setToLocalStorage(STORAGE_KEYS.FOLDERS, folders);
-  setToLocalStorage(STORAGE_KEYS.CURRENT_FOLD_ID, currentFolderId);
+  setToLocalStorage(STORAGE_KEYS.CURRENT_FOLDER_ID, currentFolderId);
+};
+
+const updateNumberOfNotes = (folderId, diff) => {
+  if (folderId !== 1) {
+    // !== 'All'
+    const folderToUpdate = folders.find(
+      (folder) => folder.id === Number(folderId)
+    );
+    folderToUpdate.numberOfNotes += diff;
+  }
+  const folderOfAll = folders.find((folder) => folder.name === 'All');
+  folderOfAll.numberOfNotes += diff;
 };
