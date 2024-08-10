@@ -55,7 +55,7 @@ function createNoteElement(note) {
   ${note.title}
   </div>
   <div class="note__content">
-  ${note.content}
+  ${note.content.replaceAll(/(\n)/g, '<br>')}
   </div>
   `;
 }
