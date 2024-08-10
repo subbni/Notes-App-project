@@ -34,10 +34,10 @@ function createAddFolderModal() {
   return `
   <div class="folder-modal modal">
     <h2 class="folder-modal__title">New Folder</h2>
-    <form class="folder-modal__form">
+    <div class="folder-modal__form">
       <span>Name:</span>
       <input name="name" type="text" value="New Folder" autofocus="autofocus">
-    </form>
+    </div>
     <div class="folder-modal__footer">
       <button class="folder-cancel-btn">Cancel</button>
       <button class="folder-confirm-btn">Ok</button>
