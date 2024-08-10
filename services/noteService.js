@@ -62,7 +62,7 @@ export const deleteNoteById = (noteId) => {
 };
 
 export const deleteNotesByFolderId = (folderId) => {
-  notes = notes.filter((note) => folderId !== Number(folderId));
+  notes = notes.filter((note) => note.folder.id !== Number(folderId));
 };
 
 export const updateNotesToLocalStorage = () => {
