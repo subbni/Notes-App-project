@@ -1,4 +1,4 @@
-import { getNoteById, createNewNote } from '../services/dataService.js';
+import { getNoteById, createNote } from '../services/noteService.js';
 import { getCurrentFolder } from './Folders.js';
 import { removeClicked } from './Notes.js';
 
@@ -44,7 +44,7 @@ function handleNoteSubmit() {
     content: noteContent,
   };
 
-  createNewNote(newNote);
+  createNote(newNote);
   // 화면창 초기화
 }
 

@@ -1,7 +1,11 @@
-import { deleteFolderById, getFolders } from '../services/dataService.js';
+import { DEFAULT_FOLDER } from '../constants/fileConfig.js';
+import { deleteFolderById, getFolders } from '../services/folderService.js';
 import { getNotesByFolder } from './Notes.js';
 
-let currentFolder = { name: 'All', id: 1 };
+let currentFolder = {
+  name: DEFAULT_FOLDER.ALL.NAME,
+  id: DEFAULT_FOLDER.ALL.ID,
+};
 let currentFolderElement = null;
 
 export const getCurrentFolder = () => currentFolder;

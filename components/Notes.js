@@ -1,4 +1,4 @@
-import { deleteNoteById, getNotes } from '../services/dataService.js';
+import { deleteNoteById, getNotes } from '../services/noteService.js';
 import { getCurrentFolder } from './Folders.js';
 import { showNoteById } from './Note.js';
 

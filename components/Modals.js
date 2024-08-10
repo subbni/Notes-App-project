@@ -1,4 +1,4 @@
-import { createNewFolder } from '../services/dataService.js';
+import { createFolder } from '../services/folderService.js';
 
 export function initializeModals() {
   const mainContainer = document.querySelector('.main');
@@ -22,7 +22,7 @@ const handleConfirmBtnClick = (e) => {
   const nameText = document.querySelector(
     '.folder-modal__form input[name="name"]'
   ).value;
-  createNewFolder(nameText);
+  createFolder(nameText);
   const folderModal = document.querySelector('.folder-modal');
   folderModal.classList.remove('on');
   const backdrop = document.querySelector('.backdrop');
