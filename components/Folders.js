@@ -1,5 +1,9 @@
 import { DEFAULT_FOLDER } from '../constants/fileConfig.js';
-import { deleteFolderById, getFolders } from '../services/folderService.js';
+import {
+  deleteFolderById,
+  getFolders,
+  updateFolderName,
+} from '../services/folderService.js';
 import { getNotesByFolder } from './Notes.js';
 
 let currentFolder = {
@@ -44,6 +48,9 @@ function initializeFolderDropdowns() {
   const deleteOptionElement = document.querySelectorAll(
     '.folder-dropdown__delete-option'
   );
+  const renameOptionElement = document.querySelectorAll(
+    '.folder-dropdown__rename-option'
+  );
 
   // 이벤트 리스너 등록
   dropdownButtons.forEach((btn) => {
@@ -54,6 +61,9 @@ function initializeFolderDropdowns() {
   });
   deleteOptionElement.forEach((item) => {
     item.addEventListener('click', handleDeleteFolderClick);
+  });
+  renameOptionElement.forEach((item) => {
+    item.addEventListener('click', handleFolderRenameBtnClick);
   });
 }
 
@@ -119,6 +129,8 @@ function handleFolderHoverOut(e) {
   detailIcon.style.display = 'none'; // 아이콘 숨기기
 }
 
+// DROPDOWN PART =======================================================
+
 // 더보기 버튼을 누르면 드롭다운 메뉴 보여주기
 function handleFolderDropdownBtnClick(e) {
   const dropdownBtn = e.target;
@@ -141,13 +153,45 @@ function handleFolderDropdownBtnHoverOut(e) {
   }
 }
 
+function handleFolderRenameBtnClick(e) {
+  const folderItemToRename = e.target.closest('.folder-item');
+  const titleSpan = folderItemToRename.querySelector('.folder-item__title');
+
+  // 드롭다운 화면에서 제거
+  const detailIcon = folderItemToRename.querySelector('.folder-detail-icon');
+  if (detailIcon.classList.contains('triggered')) {
+    detailIcon.classList.remove('triggered');
+  }
+
+  const currentName = titleSpan.textContent.trim();
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = currentName;
+  input.className = 'folder-item__input';
+
+  titleSpan.replaceWith(input);
+  input.focus();
+
+  input.addEventListener('blur', function (e) {
+    const newName = input.value.trim();
+    updateFolderName(folderItemToRename.dataset.id, newName);
+  });
+
+  input.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      input.blur();
+    }
+  });
+}
+
 //  ===== html element 생성 =====
 function createFolderItem(folder) {
   return `
     <div class="folder-item" data-name="${folder.name}" data-id="${folder.id}">
-      <div class="folder-item__title">
+      <div class="folder-item__main">
         <img src="./images/folder-yellow.svg" alt="folder icon">
-        <span>${folder.name}</span>
+        <span class="folder-item__title">${folder.name}</span>
       </div>
       <div class="folder-item__info">
         <img class="folder-detail-icon" src="./images/detail-icon.svg" alt="detail icon">

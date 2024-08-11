@@ -48,6 +48,15 @@ export const createNote = (newNote) => {
   updateComponents();
 };
 
+export const udpateFolderNameToNotes = (folderId, newFolderName) => {
+  notes.map((note) => {
+    if (note.folder.id === Number(folderId)) {
+      note.folder.name = newFolderName;
+    }
+  });
+  updateNotesToLocalStorage();
+};
+
 export const deleteNoteById = (noteId) => {
   // note 삭제
   const noteToDelete = notes.find((note) => note.id === Number(noteId));

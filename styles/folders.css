@@ -89,6 +89,16 @@
   color: white;
 }
 
+.folder-item__input {
+  /* all: unset; */
+  background-color: white;
+  outline: none;
+  border: none;
+}
+
+.folder-item__input:focus {
+}
+
 .folders-footer {
   box-sizing: border-box;
   background-color: var(--color-background);

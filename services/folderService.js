@@ -9,6 +9,7 @@ import {
 } from './dataService.js';
 import {
   deleteNotesByFolderId,
+  udpateFolderNameToNotes,
   updateNotesToLocalStorage,
 } from './noteService.js';
 
@@ -46,6 +47,20 @@ export const updateNumberOfNotes = (folderId, diff) => {
     (folder) => folder.id === DEFAULT_FOLDER.ALL.ID
   );
   masterFolder.numberOfNotes += diff;
+};
+
+export const updateFolderName = (folderId, newFolderName) => {
+  // TODO: default folder 검증하는 로직 추가할 것
+  const folderIndex = folders.findIndex(
+    (folder) => folder.id === Number(folderId)
+  );
+  if (folderIndex !== -1 && folders[folderIndex].name !== newFolderName) {
+    folders[folderIndex].name = newFolderName;
+  }
+  // note 내 folder 이름 수정
+  udpateFolderNameToNotes(folderId, newFolderName);
+  updateFoldersToLocalStorage();
+  updateComponents();
 };
 
 export const deleteFolderById = (folderId) => {
