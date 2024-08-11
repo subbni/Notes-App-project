@@ -57,6 +57,15 @@ export const udpateFolderNameToNotes = (folderId, newFolderName) => {
   updateNotesToLocalStorage();
 };
 
+export const updateNote = (noteInfo) => {
+  const noteIdx = notes.findIndex((note) => note.id === Number(noteInfo.id));
+  if (noteIdx !== -1) {
+    notes[noteIdx].title = noteInfo.title;
+    notes[noteIdx].content = noteInfo.content;
+  }
+  updateNotesToLocalStorage();
+};
+
 export const deleteNoteById = (noteId) => {
   // note 삭제
   const noteToDelete = notes.find((note) => note.id === Number(noteId));
