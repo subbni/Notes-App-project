@@ -19,14 +19,16 @@ const handleCancelBtnClick = () => {
 };
 
 const handleConfirmBtnClick = (e) => {
-  const nameText = document.querySelector(
+  const input = document.querySelector(
     '.folder-modal__form input[name="name"]'
-  ).value;
+  );
+  const nameText = input.value;
   createFolder(nameText);
   const folderModal = document.querySelector('.folder-modal');
   folderModal.classList.remove('on');
   const backdrop = document.querySelector('.backdrop');
   backdrop.classList.remove('on');
+  input.value = 'New Folder';
 };
 
 // ===== html 요소 생성 =====
