@@ -1,6 +1,6 @@
 import { deleteNoteById, getNotes } from '../services/noteService.js';
 import { getCurrentFolder } from './Folders.js';
-import { showNoteById } from './Note.js';
+import { initializeNote, showNoteById } from './Note.js';
 
 let previousClickedElement = null;
 
@@ -32,6 +32,7 @@ function setNotes(notes) {
   document.querySelectorAll('.notes-item').forEach((item) => {
     item.addEventListener('click', handleNotesClick);
   });
+  initializeNote();
 }
 
 export function getNotesByFolder(folder) {
