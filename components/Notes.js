@@ -35,6 +35,18 @@ function setNotes(notes) {
   initializeNote();
 }
 
+export function setSearchResultNotes(notes, searchWord) {
+  const notesElement = document.querySelector('.notes');
+  // 기존에 있던 노트 리스트 초기화
+  notesElement.innerHTML = '';
+  const regex = new RegExp(searchWord, 'gi');
+  const notesHTML = notes.map((note) => createNoteItemElement(note)).join('');
+  notesElement.innerHTML = notesHTML;
+  document.querySelectorAll('.notes-item').forEach((item) => {
+    item.addEventListener('click', handleNotesClick);
+  });
+}
+
 export function getNotesByFolder(folder) {
   const filteredNotes = getNotes(folder);
   setNotes(filteredNotes);

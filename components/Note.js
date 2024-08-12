@@ -2,16 +2,30 @@ import {
   getNoteById,
   createNote,
   updateNote,
+  getMatchedNotes,
 } from '../services/noteService.js';
 import { getCurrentFolder } from './Folders.js';
-import { removeClicked } from './Notes.js';
+import {
+  initializeNotes,
+  removeClicked,
+  setSearchResultNotes,
+} from './Notes.js';
 
 export function initializeNote() {
   const noteHeaderElement = document.querySelector('.note-header');
-  noteHeaderElement.innerHTML = `<img id="add-note-icon" src="./images/edit-icon.svg" alt="노트 생성 아이콘" />`;
+  noteHeaderElement.innerHTML = createNoteHeaderElement();
+
   document
     .querySelector('#add-note-icon')
     .addEventListener('click', handleNoteCreate);
+
+  document
+    .querySelector('#search-note-icon')
+    .addEventListener('click', handleNoteSearchClick);
+
+  document
+    .querySelector('.note-search-input')
+    .addEventListener('input', handleNoteSearchInputChange);
 
   const noteElement = document.querySelector('.note');
   noteElement.addEventListener('click', handleNoteClick);
@@ -89,6 +103,37 @@ function handleNoteClick(e) {
     .addEventListener('click', handleUpdatedNoteSubmit);
 }
 
+function handleNoteSearchClick(e) {
+  e.stopPropagation();
+  const searchIcon = e.target;
+  const searchForm = document.querySelector('.note-search-form');
+  const searchInput = document.querySelector('.note-search-input');
+  const focusedElements = document.querySelectorAll('.clicked');
+  console.log(focusedElements);
+  searchForm.classList.add('show');
+  searchIcon.style.display = 'none';
+  searchInput.focus();
+  focusedElements.forEach((element) => element.classList.add('outfocused'));
+
+  document
+    .querySelector('.search-cancle-icon')
+    .addEventListener('click', function (e) {
+      searchForm.classList.remove('show');
+      searchIcon.style.display = 'block';
+      // 노트 리스트 다시 원래대로 돌려놓기
+      // 1. 현재 선택되어 있는 디렉토리로 돌아가기
+      initializeNotes();
+      focusedElements.forEach((element) =>
+        element.classList.remove('outfocused')
+      );
+    });
+}
+
+function handleNoteSearchInputChange(e) {
+  console.log(e.target.value);
+  setSearchResultNotes(getMatchedNotes(e.target.value));
+}
+
 // ===== html element 생성 =====
 function createNoteElement(note) {
   return `
@@ -117,4 +162,18 @@ function createNoteWritingElement(note) {
 function createNoteSubmitButton() {
   return `
   <button class="note-submit-btn">submit</button>`;
+}
+
+function createNoteHeaderElement() {
+  return `
+  <img id="add-note-icon" src="./images/edit-icon.svg" alt="노트 생성 아이콘" />
+  <div class="note-search-wrap">
+    <img id="search-note-icon" src="./images/search-icon.svg" alt="노트 검색 아이콘" />
+    <div class=note-search-form>
+      <input class="note-search-input" name="search-text" type="text" placeholder="Search" />
+      <img class="search-cancle-icon" src="./images/cancle-icon.svg" alt="검색 취소 아이콘" />
+    </div>
+  </div>
+  
+  `;
 }

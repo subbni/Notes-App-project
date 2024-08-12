@@ -87,3 +87,10 @@ export const updateNotesToLocalStorage = () => {
   setToLocalStorage(STORAGE_KEYS.NOTES, notes);
   setToLocalStorage(STORAGE_KEYS.CURRENT_NOTE_ID, currentNoteId);
 };
+
+export const getMatchedNotes = (searchWord) => {
+  const regex = new RegExp(searchWord, 'gi');
+  return notes.filter((note) => {
+    return note.title.match(regex);
+  });
+};

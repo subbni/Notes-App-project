@@ -29,8 +29,8 @@
   background-color: var(--color-point);
 }
 
-.folder-item.clicked .folder-item__info {
-  background-color: var(--color-point);
+.folder-item.clicked.outfocused {
+  background-color: var(--color-outfocused);
 }
 
 .folder-item img {

@@ -1,11 +1,61 @@
 .note-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0 15px 0 15px;
 }
 
 #add-note-icon {
+  padding: 5px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+#add-note-icon:hover {
+  background-color: rgba(233, 233, 233, 0.7);
+}
+
+.note-search-wrap {
+  display: flex;
+  align-items: center;
+}
+
+#search-note-icon {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#search-note-icon:hover {
+  background-color: rgba(233, 233, 233, 0.7);
+}
+
+.note-search-form {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  width: 0px;
+  border: 2px solid rgba(233, 233, 233, 0.7);
+  border-radius: 8px;
+  padding: 5px;
+  transform: scale(0);
+  transition: all ease 0.2s;
+}
+
+.note-search-form.show {
+  visibility: visible;
+  opacity: 1;
+  width: 200px;
+  transform: scale(1);
+}
+
+.note-search-form:focus {
+  border: 2px solid var(--color-base);
+}
+
+.note-search-input {
+  outline: none;
+  border: none;
 }
 
 .note {
