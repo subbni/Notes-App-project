@@ -87,7 +87,6 @@ function createNoteItemElement(note, searchWord = '') {
   if (searchWord) {
     const regex = new RegExp(`(${searchWord})`, 'gi');
     title = note.title.replace(regex, `<span class="highlight">$1</span>`);
-    console.log(title);
   }
 
   return `

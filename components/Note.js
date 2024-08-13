@@ -109,11 +109,11 @@ function handleNoteSearchClick(e) {
   const searchForm = document.querySelector('.note-search-form');
   const searchInput = document.querySelector('.note-search-input');
   const focusedElements = document.querySelectorAll('.clicked');
-  console.log(focusedElements);
   searchForm.classList.add('show');
   searchIcon.style.display = 'none';
   searchInput.focus();
   focusedElements.forEach((element) => element.classList.add('outfocused'));
+  document.querySelector('.note').innerHTML = '';
 
   document
     .querySelector('.search-cancle-icon')
