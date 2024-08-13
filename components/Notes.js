@@ -40,7 +40,9 @@ export function setSearchResultNotes(notes, searchWord) {
   // 기존에 있던 노트 리스트 초기화
   notesElement.innerHTML = '';
   const regex = new RegExp(searchWord, 'gi');
-  const notesHTML = notes.map((note) => createNoteItemElement(note)).join('');
+  const notesHTML = notes
+    .map((note) => createNoteItemElement(note, searchWord))
+    .join('');
   notesElement.innerHTML = notesHTML;
   document.querySelectorAll('.notes-item').forEach((item) => {
     item.addEventListener('click', handleNotesClick);
@@ -79,10 +81,18 @@ function handleNoteDeleteClick(e) {
 }
 
 // ===== html 요소 생성 =====
-function createNoteItemElement(note) {
+
+function createNoteItemElement(note, searchWord = '') {
+  let title = note.title;
+  if (searchWord) {
+    const regex = new RegExp(`(${searchWord})`, 'gi');
+    title = note.title.replace(regex, `<span class="highlight">$1</span>`);
+    console.log(title);
+  }
+
   return `
     <div class="notes-item" data-id=${note.id} data-folderId=${note.folder.id}>
-      <h2 class="notes-item__title">${note.title}</h2>
+      <h2 class="notes-item__title">${title}</h2>
       <div class="notes-item__folder">
         <img src="./images/folder.svg" alt="folder icon">
         <span class="notes-item__folder-title">${note.folder.name}</span>

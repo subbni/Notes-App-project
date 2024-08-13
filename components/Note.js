@@ -130,8 +130,7 @@ function handleNoteSearchClick(e) {
 }
 
 function handleNoteSearchInputChange(e) {
-  console.log(e.target.value);
-  setSearchResultNotes(getMatchedNotes(e.target.value));
+  setSearchResultNotes(getMatchedNotes(e.target.value), e.target.value);
 }
 
 // ===== html element 생성 =====
