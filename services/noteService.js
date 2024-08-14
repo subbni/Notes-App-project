@@ -1,4 +1,4 @@
-import { DEFAULT_FOLDER } from '../constants/fileConfig.js';
+import { DEFAULT_FOLDER } from '../constants/folderConfig.js';
 import { STORAGE_KEYS } from '../constants/storageConfig.js';
 import { updateComponents } from '../index.js';
 import {
