@@ -38,6 +38,7 @@ export const createNote = (newNote) => {
   newNote = {
     ...newNote,
     id: currentNoteId,
+    createdAt: new Date(),
   };
   currentNoteId += 1;
   notes.push(newNote);
@@ -62,6 +63,7 @@ export const updateNote = (noteInfo) => {
   if (noteIdx !== -1) {
     notes[noteIdx].title = noteInfo.title;
     notes[noteIdx].content = noteInfo.content;
+    notes[noteIdx].createdAt = new Date();
   }
   updateNotesToLocalStorage();
 };

@@ -21,6 +21,7 @@ export const defaultNotes = [
     title: 'Be A Writer',
     content: 'Write whatever you want, whenever you want.',
     folder: { name: DEFAULT_FOLDER.NOTES.NAME, id: DEFAULT_FOLDER.NOTES.ID },
+    createdAt: new Date(),
   },
 ];
 
