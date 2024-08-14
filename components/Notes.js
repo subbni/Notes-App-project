@@ -1,4 +1,5 @@
 import { deleteNoteById, getNotes } from '../services/noteService.js';
+import { formatDateShort } from '../utils/dateUtils.js';
 import { getCurrentFolder } from './Folders.js';
 import { initializeNote, showNoteById } from './Note.js';
 
@@ -92,6 +93,9 @@ function createNoteItemElement(note, searchWord = '') {
   return `
     <div class="notes-item" data-id=${note.id} data-folderId=${note.folder.id}>
       <h2 class="notes-item__title">${title}</h2>
+      <div class="notes-item__info">
+        ${formatDateShort(note.createdAt)}
+      </div>
       <div class="notes-item__folder">
         <img src="./images/folder.svg" alt="folder icon">
         <span class="notes-item__folder-title">${note.folder.name}</span>

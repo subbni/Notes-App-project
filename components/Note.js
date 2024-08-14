@@ -4,6 +4,7 @@ import {
   updateNote,
   getMatchedNotes,
 } from '../services/noteService.js';
+import { formatDate } from '../utils/dateUtils.js';
 import { getCurrentFolder } from './Folders.js';
 import {
   initializeNotes,
@@ -136,6 +137,7 @@ function handleNoteSearchInputChange(e) {
 // ===== html element 생성 =====
 function createNoteElement(note) {
   return `
+  <div class="note-createdAt">${note ? formatDate(note.createdAt) : ''}</div>
   <div class="note__title">
   ${note.title.trim()}
   </div>
@@ -147,6 +149,7 @@ function createNoteElement(note) {
 
 function createNoteWritingElement(note) {
   return `
+  <div class="note-createdAt">${note ? formatDate(note.createdAt) : ''}</div>
   <textarea class="note-title" name="note-title" autofocus="autofocus">${(note
     ? note.title
     : 'Title'
