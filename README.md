@@ -58,7 +58,8 @@ Notes-App-project
  
 
 ### 2. 노트 조회
-<img width="800" alt="Screenshot 2024-08-22 at 13 55 14" src="https://github.com/user-attachments/assets/e458fbac-94dd-4141-83dd-4a524e9daff0">
+<img width="800" alt="Screenshot 2024-08-22 at 13 55 46" src="https://github.com/user-attachments/assets/d7c5ef71-e588-4bf3-ae71-7a99abf2cda5">
+
 <img width="800" alt="Screenshot 2024-08-22 at 13 50 23" src="https://github.com/user-attachments/assets/5c4abe57-40a8-43b9-8685-e6caa2362ded">
 
 각 폴더에 저장된 노트를 조회할 수 있습니다.
@@ -78,7 +79,7 @@ Notes-App-project
 ### 5. 노트 / 폴더 삭제
 
 #### 노트 삭제
-<img width="800" alt="Screenshot 2024-08-22 at 13 55 46" src="https://github.com/user-attachments/assets/daa086c9-a20f-42e3-8a9c-7cf497ce451d">
+<img width="800" alt="Screenshot 2024-08-22 at 14 06 26" src="https://github.com/user-attachments/assets/fda9af58-cf3f-4e2d-9950-6468b5f00a8e">
 
 휴지통 아이콘을 클릭하면 노트 리스트에서 포커스 중인 노트를 삭제합니다.
 
